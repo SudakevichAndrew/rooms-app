@@ -7,6 +7,10 @@ class Select extends Component {
         value: this.props.type
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({value: nextProps.type});
+    }
+
     changeValue = (event, index, value) => {
         this.setState({value});
         this.props.changeItemType(this.props.index, value);
@@ -14,12 +18,16 @@ class Select extends Component {
 
     render() {
         return (
-            <SelectField className="select" floatingLabelText="Choose type" value={this.state.value} onChange={this.changeValue}>
-            {
-                this.props.roomTypeList.map((option, index) => {
-                    return <MenuItem key={index} value={option} primaryText={option} />;
-                })
-            }
+            <SelectField
+                className="select"
+                floatingLabelText="Choose type"
+                value={this.state.value}
+                onChange={this.changeValue}>
+                {
+                    this.props.roomTypeList.map((option, index) => {
+                        return <MenuItem key={index} disabled={this.props.usedTypes.indexOf(option) >= 0} value={option} primaryText={option} />;
+                    })
+                }
             </SelectField>
         );
     }

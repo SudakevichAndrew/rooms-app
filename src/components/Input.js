@@ -9,6 +9,10 @@ class Input extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({value: nextProps.count});
+    }
+
     changeValue = (event, value) => {
         this.setState({value});
         this.props.changeItemCount(this.props.index, value);
@@ -18,9 +22,10 @@ class Input extends Component {
     render() {
         return (
             <TextField
+                className="input"
                 hintText="Count"
                 type="number"
-                className="input"
+                min="1"
                 value={this.state.value}
                 onChange={this.changeValue} />
         );

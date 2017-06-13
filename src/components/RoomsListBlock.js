@@ -10,19 +10,20 @@ class RoomsListBlock extends Component {
 
         this.state = {
             roomsList: [],
+            usedTypes: [],
             disabled: false
         }
     }
 
     componentWillMount() {
-        var localRoomsList = JSON.parse(localStorage.getItem('roomsList'));
+        let localRoomsList = JSON.parse(localStorage.getItem('roomsList'));
         if(localRoomsList) {
             this.setState({roomsList: localRoomsList});
         }
     }
 
     getItemCount = () => {
-        var disabled = this.state.roomsList.length >= this.props.roomTypeList.length;
+        let disabled = this.state.roomsList.length >= this.props.roomTypeList.length;
 
         this.setState({disabled: disabled});
     }
@@ -30,7 +31,7 @@ class RoomsListBlock extends Component {
     createItem = () => {
         let object = {
             type: '',
-            count: 1
+            count: ''
         };
         let newState = this.state.roomsList;
         newState.push(object);
@@ -46,6 +47,8 @@ class RoomsListBlock extends Component {
 
         this.setState({roomsList: newState});
 
+        this.getDisabledTypes();
+
         this.getItemCount();
     }
 
@@ -54,6 +57,8 @@ class RoomsListBlock extends Component {
         newState[index].type = value;
 
         this.setState({roomsList: newState});
+
+        this.getDisabledTypes();
     }
 
     changeItemCount = (index, value) => {
@@ -67,18 +72,31 @@ class RoomsListBlock extends Component {
         this._updateLocalStorage();
     }
 
+    getDisabledTypes = () => {
+        let roomsList = this.state.roomsList;
+        let newState = [];
+        roomsList.forEach((item) => {
+            newState.push(item.type);
+        });
+
+        this.setState({usedTypes: newState});
+    }
+
     render() {
         let roomsList = this.state.roomsList.map((item, index) => {
             return (
                 <RoomsListItem
                     key={index}
                     index={index}
+                    item={item}
                     type={item.type}
                     count={item.count}
                     roomTypeList={this.props.roomTypeList}
                     roomList={this.props.roomList}
                     removeItem={this.removeItem}
                     changeItemType={this.changeItemType}
+                    usedTypes={this.state.usedTypes}
+                    saveUsedType={this.saveUsedType}
                     changeItemCount={this.changeItemCount}/>
             );
         });
