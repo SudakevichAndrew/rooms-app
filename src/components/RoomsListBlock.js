@@ -108,7 +108,7 @@ class RoomsListBlock extends Component {
                 <ul className="rooms-list">
                     {roomsList}
                 </ul>
-                <FlatButton disabled={this.state.disabled} onClick={this.createItem} className="create-item" label="Add" primary={true} />
+                <FlatButton disabled={this.state.disabledAdding} onClick={this.createItem} className="create-item" label="Add" primary={true} />
                 <div>
                     <RaisedButton label="Save" primary={true} onClick={this.saveItem} />
                     <FlatButton label="Cancel" onClick={this.props.changePopupOpening} />
