@@ -14,6 +14,7 @@ class Input extends Component {
     }
 
     changeValue = (event, value) => {
+        value = (value !== '' && value <= 0) ? 1 : value;
         this.setState({value});
         this.props.changeItemCount(this.props.index, value);
 

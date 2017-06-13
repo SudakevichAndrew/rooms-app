@@ -42,4 +42,11 @@
     margin: 0 0 25px !important;
 }
 
+.error-message {
+    color: #d50000;
+}
+
+.success-message {
+    color: #4cAf50
+}
 

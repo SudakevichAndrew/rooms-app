@@ -11,7 +11,8 @@ class RoomsListBlock extends Component {
         this.state = {
             roomsList: [],
             usedTypes: [],
-            disabled: false
+            disabledAdding: false,
+            saveSuccess: false
         }
     }
 
@@ -25,7 +26,7 @@ class RoomsListBlock extends Component {
     getItemCount = () => {
         let disabled = this.state.roomsList.length >= this.props.roomTypeList.length;
 
-        this.setState({disabled: disabled});
+        this.setState({disabledAdding: disabled});
     }
 
     createItem = () => {
@@ -54,6 +55,7 @@ class RoomsListBlock extends Component {
 
     changeItemType = (index, value) => {
         let newState = this.state.roomsList;
+
         newState[index].type = value;
 
         this.setState({roomsList: newState});
@@ -69,7 +71,19 @@ class RoomsListBlock extends Component {
     }
 
     saveItem = () => {
-        this._updateLocalStorage();
+        this.checkSaveSuccess();
+
+        if(this.state.saveSuccess) {
+            this._updateLocalStorage();
+        }
+    }
+
+    checkSaveSuccess = () => {
+        let roomsList = this.state.roomsList;
+        let saveSuccess = roomsList.map((item) => {
+            return item.type !== '' || item.count !== '';
+        });
+        this.setState({saveSuccess: saveSuccess});
     }
 
     getDisabledTypes = () => {
