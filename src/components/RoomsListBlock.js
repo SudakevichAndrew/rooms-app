@@ -11,8 +11,7 @@ class RoomsListBlock extends Component {
         this.state = {
             roomsList: [],
             usedTypes: [],
-            disabledAdding: false,
-            saveSuccess: false
+            disabledAdding: false
         }
     }
 
