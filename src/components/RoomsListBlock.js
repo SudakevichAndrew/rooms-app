@@ -71,19 +71,7 @@ class RoomsListBlock extends Component {
     }
 
     saveItem = () => {
-        this.checkSaveSuccess();
-
-        if(this.state.saveSuccess) {
-            this._updateLocalStorage();
-        }
-    }
-
-    checkSaveSuccess = () => {
-        let roomsList = this.state.roomsList;
-        let saveSuccess = roomsList.map((item) => {
-            return item.type !== '' || item.count !== '';
-        });
-        this.setState({saveSuccess: saveSuccess});
+        this._updateLocalStorage();
     }
 
     getDisabledTypes = () => {
@@ -110,6 +98,7 @@ class RoomsListBlock extends Component {
                     removeItem={this.removeItem}
                     changeItemType={this.changeItemType}
                     usedTypes={this.state.usedTypes}
+                    getDisabledTypes={this.getDisabledTypes}
                     saveUsedType={this.saveUsedType}
                     changeItemCount={this.changeItemCount}/>
             );

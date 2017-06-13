@@ -10,6 +10,10 @@ class RoomsListItem extends Component {
         this.props.removeItem(this.props.item);
     }
 
+    componentDidMount() {
+        this.props.getDisabledTypes();
+    }
+
     render() {
         return (
             <li className="rooms-list-item">
