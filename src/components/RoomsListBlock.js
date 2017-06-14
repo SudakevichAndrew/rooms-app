@@ -74,12 +74,10 @@ class RoomsListBlock extends Component {
         if(this.checkSaveSuccess()) {
             this._updateLocalStorage();
             alert('Saved successfully');
+            this.props.changePopupOpening();
         }else {
             alert('All fields are required');
         }
-
-
-
     }
 
     checkSaveSuccess = () => {
