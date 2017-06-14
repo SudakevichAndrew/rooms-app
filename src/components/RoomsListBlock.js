@@ -32,7 +32,7 @@ class RoomsListBlock extends Component {
     createItem = () => {
         let object = {
             type: '',
-            count: ''
+            count: 1
         };
         let newState = this.state.roomsList;
         newState.push(object);
@@ -118,7 +118,7 @@ class RoomsListBlock extends Component {
             );
         });
         return (
-            <div>
+            <div className="content">
                 <ul className="rooms-list">
                     {roomsList}
                 </ul>
