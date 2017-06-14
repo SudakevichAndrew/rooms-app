@@ -11,7 +11,8 @@ class RoomsListBlock extends Component {
         this.state = {
             roomsList: [],
             usedTypes: [],
-            disabledAdding: false
+            disabledAdding: false,
+            saveSuccess: false
         }
     }
 
@@ -70,7 +71,23 @@ class RoomsListBlock extends Component {
     }
 
     saveItem = () => {
-        this._updateLocalStorage();
+        if(this.checkSaveSuccess()) {
+            this._updateLocalStorage();
+            alert('Saved successfully');
+        }else {
+            alert('All fields are required');
+        }
+
+
+
+    }
+
+    checkSaveSuccess = () => {
+        let roomsList = this.state.roomsList;
+        let saveSuccess = roomsList.every((item) => {
+            return (item.type !== '' && item.count !== '');
+        });
+        return saveSuccess;
     }
 
     getDisabledTypes = () => {
