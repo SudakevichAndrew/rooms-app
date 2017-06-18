@@ -20,7 +20,7 @@ class Select extends Component {
         return (
             <SelectField
                 className="select"
-                floatingLabelText="Choose type"
+                floatingLabelText="Choose type*"
                 value={this.state.value}
                 onChange={this.changeValue}>
                 {

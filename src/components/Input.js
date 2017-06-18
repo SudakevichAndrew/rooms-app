@@ -21,16 +21,13 @@ class Input extends Component {
     }
 
     render() {
-        let error = this.state.value === '';
-
         return (
             <TextField
                 className="input"
-                hintText="Count"
+                hintText="Count*"
                 type="number"
                 min="1"
                 value={this.state.value}
-                errorText={error && 'This is required field'}
                 onChange={this.changeValue} />
         );
     }

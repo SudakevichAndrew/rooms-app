@@ -87,10 +87,9 @@ class RoomsListBlock extends Component {
 
     checkSaveSuccess = () => {
         let roomsList = this.state.roomsList;
-        let saveSuccess = roomsList.every((item) => {
+        return roomsList.every((item) => {
             return (item.type !== '' && item.count !== '');
         });
-        return saveSuccess;
     }
 
     getDisabledTypes = () => {
