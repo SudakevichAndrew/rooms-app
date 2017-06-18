@@ -14,7 +14,9 @@ class Popup extends Component {
                     title={<span>Rooms structure</span>}
                     iconElementLeft={<IconButton><ActionHome /></IconButton>}
                     iconElementRight={<IconButton onClick={this.props.changePopupOpening}><NavigationClose /></IconButton>}/>
-                <RoomsListBlock roomTypeList={this.props.roomTypeList} changePopupOpening={this.props.changePopupOpening}/>
+                <RoomsListBlock
+                    roomTypeList={this.props.roomTypeList}
+                    changePopupOpening={this.props.changePopupOpening}/>
             </div>
         );
     }

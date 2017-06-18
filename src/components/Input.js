@@ -21,6 +21,8 @@ class Input extends Component {
     }
 
     render() {
+        let error = this.state.value === '';
+
         return (
             <TextField
                 className="input"
@@ -28,6 +30,7 @@ class Input extends Component {
                 type="number"
                 min="1"
                 value={this.state.value}
+                errorText={error && 'This is required field'}
                 onChange={this.changeValue} />
         );
     }

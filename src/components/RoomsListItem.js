@@ -20,11 +20,10 @@ class RoomsListItem extends Component {
                 <Select
                     index={this.props.index}
                     item={this.props.item}
-                    roomList={this.props.roomList}
+                    roomsList={this.props.roomsList}
                     roomTypeList={this.props.roomTypeList}
                     type={this.props.type}
                     changeItemType={this.props.changeItemType}
-                    saveUsedType={this.props.saveUsedType}
                     usedTypes={this.props.usedTypes}/>
                 <Input
                     index={this.props.index}

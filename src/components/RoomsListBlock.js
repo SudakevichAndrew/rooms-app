@@ -7,16 +7,24 @@ import RoomsListItem from './RoomsListItem';
 class RoomsListBlock extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             roomsList: [],
             usedTypes: [],
             disabledAdding: false,
             saveSuccess: false
-        }
+        };
     }
 
     componentWillMount() {
+        this.getSavedData()
+    }
+
+    _updateLocalStorage() {
+        let roomsList = JSON.stringify(this.state.roomsList);
+        localStorage.setItem('roomsList', roomsList);
+    }
+
+    getSavedData = () => {
         let localRoomsList = JSON.parse(localStorage.getItem('roomsList'));
         if(localRoomsList) {
             this.setState({roomsList: localRoomsList});
@@ -73,10 +81,7 @@ class RoomsListBlock extends Component {
     saveItem = () => {
         if(this.checkSaveSuccess()) {
             this._updateLocalStorage();
-            alert('Saved successfully');
             this.props.changePopupOpening();
-        }else {
-            alert('All fields are required');
         }
     }
 
@@ -108,13 +113,12 @@ class RoomsListBlock extends Component {
                     type={item.type}
                     count={item.count}
                     roomTypeList={this.props.roomTypeList}
-                    roomList={this.props.roomList}
+                    roomsList={this.state.roomsList}
                     removeItem={this.removeItem}
                     changeItemType={this.changeItemType}
+                    changeItemCount={this.changeItemCount}
                     usedTypes={this.state.usedTypes}
-                    getDisabledTypes={this.getDisabledTypes}
-                    saveUsedType={this.saveUsedType}
-                    changeItemCount={this.changeItemCount}/>
+                    getDisabledTypes={this.getDisabledTypes}/>
             );
         });
         return (
@@ -133,11 +137,6 @@ class RoomsListBlock extends Component {
 
     componentDidMount() {
         this.getItemCount();
-    }
-
-    _updateLocalStorage() {
-        let roomsList = JSON.stringify(this.state.roomsList);
-        localStorage.setItem('roomsList', roomsList);
     }
 }
 

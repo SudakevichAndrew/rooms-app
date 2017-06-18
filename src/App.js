@@ -3,6 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import OpenButton from './components/OpenButton';
 import Popup from './components/Popup';
+import GeneralListBlock from './components/GeneralListBlock'
 
 class App extends Component {
     constructor(props) {
@@ -19,13 +20,18 @@ class App extends Component {
     render() {
         return (
             <MuiThemeProvider>
-                <div>
-                    {!this.state.isOpened ? (
+                {!this.state.isOpened ? (
+                    <div>
                         <OpenButton changePopupOpening={this.changePopupOpening} />
-                    ) : (
-                        <Popup roomTypeList={this.props.roomTypeList} changePopupOpening={this.changePopupOpening}/>
-                    )}
-                </div>
+                        <GeneralListBlock
+                            roomsList={this.state.roomsList}
+                            getSavedData={this.getSavedData}/>
+                    </div>
+                ) : (
+                    <Popup
+                        roomTypeList={this.props.roomTypeList}
+                        changePopupOpening={this.changePopupOpening} />
+                )}
             </MuiThemeProvider>
         );
     }
