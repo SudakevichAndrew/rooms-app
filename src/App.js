@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import OpenButton from './OpenButton';
-import Popup from './Popup';
-import GeneralListBlock from './GeneralListBlock'
+import OpenButton from './components/OpenButton';
+import Popup from './components/Popup';
+import GeneralListBlock from './components/GeneralListBlock'
 
 class App extends Component {
     constructor(props) {
